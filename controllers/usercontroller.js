@@ -36,8 +36,8 @@ const Signup = async (req, res) => {
   }
 };
 //creando token
-const createToken = (user, SECRET_KEY, expiresIn) => {
-  const { _id, name, email } = user;
+const createToken = (users, SECRET_KEY, expiresIn) => {
+  const { _id, name, email } = users;
   const payload = {
     _id,
     name,
@@ -60,15 +60,17 @@ const Signin = async (req, res, next) => {
     res.status(400).send({ message: "el usuario no existe" });
     return next(); //paraliza la ejecucion
   }
-  //verificando password
-  const verify = bcrypt.compareSync(req.body.password, users.password);
-  if (!verify) {
-    return res.status(400).send({ message: "Contraseña incorrecta" });
-  }
-   const {name, email} = users;
   try {
-    const token = createToken(user, JWT_SECRET, "24h");
+      //verificando password
+  const verify = bcrypt.compareSync(req.body.password, users.password);
+  if (verify) {
+    const {name, email} = users;
+    const token = createToken(users, JWT_SECRET, "24h");
+    console.log(token)
     return res.status(200).send({ token, user:{name, email}});
+  }else{
+    return res.status(400).send({message:"password incorrecto"})
+  }
   } catch (err) {
     return res.status(500).send({ message: "Error al iniciar sesion" });
   }
