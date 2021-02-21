@@ -10,7 +10,7 @@ const colors = require('colors');
 
 /*load routes*/
 const RouterUser = require('./router/user')
-app.use(express.json());
+//app.use(express.json());
 //body parser
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json())

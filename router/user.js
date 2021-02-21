@@ -18,7 +18,7 @@ UserController.Signup);
 
 router.post('/api/signin',[
   check('email', 'Agregar un email valido').isEmail(),
-  check('password', 'Ingrese un password').not().isEmpty().isLength({min:8})
+  check('password', 'el password no puede ir vacio').not().isEmpty()
 ],UserController.Signin);
 
 router.post('/api/favorite/',[header('authorization','Usted no ha iniciado session').isEmpty()], Middleware.VerifyTokenWed)
