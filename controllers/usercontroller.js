@@ -19,7 +19,7 @@ const Signup = async (req, res) => {
   if (userverify) {
     return res
       .status(400)
-      .send({ message: "el usuario ya se encuentra registrado" });
+      .send({ message: "El usuario ya se encuentra registrado" });
   }
 
   const user = new User(req.body);
@@ -57,7 +57,7 @@ const Signin = async (req, res, next) => {
 
   let users = await User.findOne({ email: req.body.email });
   if (!users) {
-    res.status(400).send({ message: "el usuario no existe" });
+    res.status(400).send({ message: "El usuario no existe" });
     return next(); //paraliza la ejecucion
   }
   try {
@@ -68,7 +68,7 @@ const Signin = async (req, res, next) => {
     const token = createToken(users, JWT_SECRET, "24h");
     return res.status(200).send({ token, user:{name, email}});
   }else{
-    return res.status(400).send({message:"password incorrecto"})
+    return res.status(400).send({message:"Password incorrecto"})
   }
   } catch (err) {
     return res.status(500).send({ message: "Error al iniciar sesion" });
