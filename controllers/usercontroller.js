@@ -66,7 +66,6 @@ const Signin = async (req, res, next) => {
   if (verify) {
     const {name, email} = users;
     const token = createToken(users, JWT_SECRET, "24h");
-    console.log(token)
     return res.status(200).send({ token, user:{name, email}});
   }else{
     return res.status(400).send({message:"password incorrecto"})
@@ -74,8 +73,8 @@ const Signin = async (req, res, next) => {
   } catch (err) {
     return res.status(500).send({ message: "Error al iniciar sesion" });
   }
+  
 };
-
 module.exports = {
   Signup,
   Signin,
