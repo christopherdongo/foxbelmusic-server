@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "backend de la aplicacion sound cloud",
   "main": "index.js",
-  "engines":{
-    "node":"14.15.4"
+  "engines": {
+    "node": "14.15.4"
   },
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Christopher Dongo",
