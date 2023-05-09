@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 const  {MONGOURL} = require('./keys')
 
-mongoose.set("useFindAndModify", false);
 const MongooConnectDB = async ()=>{
      try{
             const conn = await mongoose.connect(MONGOURL,{
                  useNewUrlParser:true,
-                 useCreateIndex:true,
                  useUnifiedTopology:true
             }
                 );
